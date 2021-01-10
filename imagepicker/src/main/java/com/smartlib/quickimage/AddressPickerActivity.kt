@@ -1,4 +1,4 @@
-package com.smartlib.addresspicker
+package com.smartlib.quickimage
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -668,4 +668,4 @@ class AddressPickerActivity : AppCompatActivity(), OnMapReadyCallback {
 }
 
 class MyLatLng(var latitude: Double, var longitude: Double) : Serializable
-class Pin(var latLng: com.smartlib.addresspicker.MyLatLng, var title: String?) : Serializable
+class Pin(var latLng: com.smartlib.quickimage.MyLatLng, var title: String?) : Serializable

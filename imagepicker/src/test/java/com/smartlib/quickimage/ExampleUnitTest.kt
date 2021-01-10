@@ -1,4 +1,4 @@
-package com.smartlib.addresspicker
+package com.smartlib.quickimage
 
 import org.junit.Test
 

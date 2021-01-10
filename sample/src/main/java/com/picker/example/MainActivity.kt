@@ -5,10 +5,10 @@ import android.content.Intent
 import android.location.Address
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.smartlib.addresspicker.AddressPickerActivity
-import com.smartlib.addresspicker.AddressPickerActivity.Companion.RESULT_ADDRESS
-import com.smartlib.addresspicker.MyLatLng
-import com.smartlib.addresspicker.Pin
+import com.smartlib.quickimage.AddressPickerActivity
+import com.smartlib.quickimage.AddressPickerActivity.Companion.RESULT_ADDRESS
+import com.smartlib.quickimage.MyLatLng
+import com.smartlib.quickimage.Pin
 import kotlinx.android.synthetic.main.activity_main.*
 
 
