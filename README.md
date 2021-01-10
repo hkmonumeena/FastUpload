@@ -23,7 +23,8 @@ Step 2. Add the dependency
 Step 4. Start Image picker. 
 
  	buttonSingle.setOnClickListener { QuickImagePicker.singleImageDialog(this,132) }
-        buttonMultiple.setOnClickListener { QuickImagePicker.multiImageDialog(this,133) }
+	
+    	buttonMultiple.setOnClickListener { QuickImagePicker.multiImageDialog(this,133) }
 
 Step 5. Get result in onActivityResult.
     
