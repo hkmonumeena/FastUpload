@@ -21,21 +21,21 @@ Step 2. Add the dependency
 
 
 Step 4. Start Image picker 
- 	button.setOnClickListener { SimpleImageUpload.singleImageDialog(this,132) }
-        button.setOnClickListener { SimpleImageUpload.multiImageDialog(this,133) }
+ 	button.setOnClickListener { QuickImagePicker.singleImageDialog(this,132) }
+        button.setOnClickListener { QuickImagePicker.multiImageDialog(this,133) }
 
 Step 5. Get result in onActivityResult.
     
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
        if (requestCode == 132 && resultCode == Activity.RESULT_OK) {
-            val myImage = SimpleImageUpload.getCompressImg(data?.data,data?.extras,"folderName",this)
-            val myImageOriginalSize = SimpleImageUpload.getWithoutCompressImage(this,data?.data!!)
+            val myImage = QuickImagePicker.getCompressImg(data?.data,data?.extras,"folderName",this)
+            val myImageOriginalSize = QuickImagePicker.getWithoutCompressImage(this,data?.data!!)
 
         }
         if (requestCode == 133 && resultCode == Activity.RESULT_OK) {
 
-            val myImagesList = SimpleImageUpload.getListOfFiles(data?.clipData,this,5)
+            val myImagesList = QuickImagePicker.getListOfFiles(data?.clipData,this,5)
 
         }
     } 
