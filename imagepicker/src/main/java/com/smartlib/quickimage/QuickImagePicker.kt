@@ -178,17 +178,19 @@ object QuickImagePicker {
 
     }
 
-    fun getListOfFiles(fileList: ClipData?, context: Context, imgLimit: Int): ArrayList<File> {
+    fun getListOfFiles(fileList: ClipData?, mycontext: Context, imgLimit: Int): ArrayList<File> {
         val listOfFiles = arrayListOf<File>()
         var count = fileList?.itemCount
 
         if (count != null) {
             if (count > imgLimit) {
-                Toast.makeText(context, "Failed: you can only select max $imgLimit images", Toast.LENGTH_SHORT).show()
+                Toast.makeText(mycontext, "Failed: you can only select max $imgLimit images", Toast.LENGTH_SHORT).show()
             } else {
                 for (i in 0 until count) {
                     var imageUri: Uri = fileList?.getItemAt(i)!!.uri
-                   // listOfFiles.add(getCompressImg(imageUri, uriOfCamera = null, "", context))
+                  listOfFiles.add(getCompressImg(imageUri, uriOfCamera = null,
+                      foldername = "", context = mycontext
+                  ))
                 }
             }
         }
