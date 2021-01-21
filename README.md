@@ -15,43 +15,44 @@ Step 1. Add it in your root build.gradle at the end of repositories:
 Step 2. Add the dependency
 
 	dependencies {
-	      implementation 'com.github.hkmonumeena:FastUpload:1.0.0'
+	            implementation 'com.github.hkmonumeena:TwoM:1.0.1'
 
 	}
 
 
-Step 4. Start Image picker. 
+POST (Kotlin). For POST method. 
 
- 	buttonSingle.setOnClickListener { QuickImagePicker.singleImageDialog(this,132) }
+ 	  // for post method
+        TwoM.post("url") // add your url
+        TwoM.headerParameter("key","value") // add your header parameter if any else just remove the line
+        TwoM.bodyParameter("key","value") // add your body parameter if any else just remove the line
+        TwoM.PostExecute().get { result ->
+            
+            Log.e("Result", "Result is here", ) // TwoM.PostExecute().get{ result -> }  here your response will be show  thats it
+        }
+POST (Java). For POST method.
+
+
+	TwoM.INSTANCE.post("url");
+        TwoM.INSTANCE.bodyParameter("category_id", "1");
+        TwoM.INSTANCE.bodyParameter("subcategory_id", "1");
+        TwoM.PostExecute postExecute = new TwoM.PostExecute();
+        postExecute.get(new Function1<String, Unit>() {
+            @Override
+            public Unit invoke(final String result) {
+                Log.e("Result", "Result is here"+result ); // TwoM.PostExecute().get{ result -> }  here your response will be show  thats it
+                
+                return null;
+            }
+        });
 	
-    	buttonMultiple.setOnClickListener { QuickImagePicker.multiImageDialog(this,133) }
-
-Step 5. Get result in onActivityResult.
-    
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-       if (requestCode == 132 && resultCode == Activity.RESULT_OK) {
-            val myImage = QuickImagePicker.getCompressImg(data?.data,data?.extras,"folderName",this)
-            val myImageOriginalSize = QuickImagePicker.getWithoutCompressImage(this,data?.data!!)
-
-        }
-        if (requestCode == 133 && resultCode == Activity.RESULT_OK) {
-
-            val myImagesList = QuickImagePicker.getListOfFiles(data?.clipData,this,5)
-
-        }
-    } 
+	
 
 Features:
 
-1- Get image in just two lines of code.
+1- Easy to use.
 
 2- fast and time saving.
 
-3- Single or multiple image option.
+3- Get server response in very less code 
 
-4- we can get Origional image size
-
-5- we can compress image size
-
-6- we can set image limit
