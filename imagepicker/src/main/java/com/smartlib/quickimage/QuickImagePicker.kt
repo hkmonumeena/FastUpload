@@ -83,27 +83,29 @@ object QuickImagePicker {
 
     private fun getCompressImageGallery(uriForGallery: Uri?, foldername: String = "Download", context: Context): File {
         val IMAGE_DIRECTORY = "/${foldername}"
-        val myBitmap = MediaStore.Images.Media.getBitmap(context.contentResolver, uriForGallery)
-        var file: File? = null
+        val myBitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(), uriForGallery)
+        var getFile:File?= null
         val bytes = ByteArrayOutputStream()
-        myBitmap!!.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
+        myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes)
         val wallpaperDirectory = File(Environment.getExternalStorageDirectory().toString() + IMAGE_DIRECTORY)
         if (!wallpaperDirectory.exists()) {
             wallpaperDirectory.mkdirs()
         }
         try {
-            file = File(wallpaperDirectory, Calendar.getInstance().timeInMillis.toString() + ".jpg")
-            file!!.createNewFile()
-            val fo = FileOutputStream(file)
+            getFile = File(wallpaperDirectory, Calendar.getInstance()
+                .getTimeInMillis().toString() + ".jpg")
+            getFile.createNewFile()
+            val fo: FileOutputStream = FileOutputStream(getFile)
             fo.write(bytes.toByteArray())
-            MediaScannerConnection.scanFile(context, arrayOf(file!!.path), arrayOf("image/jpeg"), null)
+            MediaScannerConnection.scanFile(context, arrayOf(getFile.getPath()), arrayOf("image/jpeg"), null)
             fo.close()
-            Log.e("cdnbchjd", file!!.absolutePath)
-            // return file!!.absolutePath
+
+            Log.e("sjhdsd", getFile.getAbsolutePath())
+            // return file1.getAbsolutePath()
         } catch (e1: IOException) {
             e1.printStackTrace()
         }
-        return file!!
+        return getFile!!
     }
 
 
