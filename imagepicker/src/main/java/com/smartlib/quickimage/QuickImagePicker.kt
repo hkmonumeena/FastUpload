@@ -106,6 +106,35 @@ object QuickImagePicker {
         return file!!
     }
 
+
+
+    fun saveImage(myBitmap: Bitmap,context: Context): File {
+        val IMAGE_DIRECTORY = "/easyapp"
+        var getFile:File?= null
+        val bytes = ByteArrayOutputStream()
+        myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes)
+        val wallpaperDirectory = File(Environment.getExternalStorageDirectory().toString() + IMAGE_DIRECTORY)
+        if (!wallpaperDirectory.exists()) {
+            wallpaperDirectory.mkdirs()
+        }
+        try {
+            getFile = File(wallpaperDirectory, Calendar.getInstance()
+                .getTimeInMillis().toString() + ".jpg")
+            getFile.createNewFile()
+            val fo: FileOutputStream = FileOutputStream(getFile)
+            fo.write(bytes.toByteArray())
+            MediaScannerConnection.scanFile(context, arrayOf(getFile.getPath()), arrayOf("image/jpeg"), null)
+            fo.close()
+
+            Log.e("sjhdsd", getFile.getAbsolutePath())
+           // return file1.getAbsolutePath()
+        } catch (e1: IOException) {
+            e1.printStackTrace()
+        }
+        return getFile!!
+    }
+
+
     private fun getCompressImageCamera(uriForCamera: Bitmap?, foldername: String = "Download", context: Context): File {
         val IMAGE_DIRECTORY = "/${foldername}"
         val myBitmap = uriForCamera
